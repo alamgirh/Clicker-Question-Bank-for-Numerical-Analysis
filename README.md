@@ -23,7 +23,7 @@ If you have any comments, corrections, personal experiences, or additions to the
 <img src="cc-by-nc-sa.png"
      alt="Markdown Monster icon"
      class="center"
-     width="100" height="60"
+     width="150" height="100"
      style="float: center; margin-right: 10px;" />
 </div>
 
