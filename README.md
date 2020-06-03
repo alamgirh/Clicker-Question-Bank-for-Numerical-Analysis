@@ -18,9 +18,11 @@ This project was funded by an SFU OER grant and an NSERC Discovery Grant. The qu
 If you have any comments, corrections, personal experiences, or additions to the question bank, then PLEASE write to us about it!!
 
 ***
+<div align="center">
 <img src="cc-by-nc-sa.png"
      alt="Markdown Monster icon"
-     style="float: center; margin-right: 50px;" />
+     style="float: center; margin-right: 10px;" />
+</div>
      
 ![](cc-by-nc-sa.png)
 
