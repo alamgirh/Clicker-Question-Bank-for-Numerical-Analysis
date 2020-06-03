@@ -20,7 +20,7 @@ If you have any comments, corrections, personal experiences, or additions to the
 ***
 <img src="cc-by-nc-sa.png"
      alt="Markdown Monster icon"
-     style="float: center; margin-right: 10px;" />
+     style="float: center; margin-right: 50px;" />
      
 ![](cc-by-nc-sa.png)
 
