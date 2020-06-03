@@ -1,0 +1,516 @@
+\documentclass[fleqn,12pt]{article}
+
+\usepackage[cm]{sfmath}   % math font: cm, cmbright, helvet
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{tabularx,array}
+\usepackage{color}
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage{ifthen}
+\usepackage{arydshln}
+\usepackage{xspace}
+\usepackage{fancyheadings}
+\usepackage{alltt,ulem}
+%\usepackage{extarrows}
+\usepackage{alphalph}
+\usepackage{url}
+
+\usepackage{tikz}  % for circled numbers
+\usetikzlibrary{calc}
+
+\usepackage[paperheight=8.5in,%
+            paperwidth=11.0in,%
+            margin={0.8in,0.5in},%
+            headheight=0.0in,%
+            headsep=0.15in,% 
+            %footskip=0.5in,%
+            footskip=0in,%
+            includehead]{geometry}
+            %,%
+            %includefoot]{geometry}
+
+\renewcommand{\headrulewidth}{0.2mm}
+\renewcommand{\footrulewidth}{0.2mm}
+\renewcommand{\footrulewidth}{0mm}
+
+
+\newcommand{\heading}[1]{\newpage%
+  \Huge%
+  \begin{center}
+    \myemph{\bfseries #1}
+  \end{center}
+  \Large%
+}
+
+\newcommand{\slideenv}{
+  \fontfamily{phv}\selectfont
+  \bfseries
+  \boldmath
+  \Large
+  \setlength{\parindent}{0pt}
+  }
+
+\definecolor{myred2}{rgb}{0.7383,0.0781,0.1406}
+\newcommand{\myemph}[1]{{\color{myred2}#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{clickerdefs} % basic definitions for clicker questions
+
+\newcounter{clickernum}\setcounter{clickernum}{0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macro for two-column output.  The default sizing 
+% of columns is roughly half-half obtained with:
+%     \mytwocol{column 1 text}{column 2 text}
+% To change proportions use an optional argument:
+%     \mytwocol[w]{column 1 text}{column 2 text}
+% where 'w' is a fraction of \textwidth for column 1 (default: w=0.45).
+\newlength{\mycoltwosize} % width of column 2
+\newcommand{\mytwocol}[3][0.45]{%
+  % Adjust columns to account for width of \qquad being ~ 0.04\textwidth
+  \setlength{\mycoltwosize}{0.90\textwidth-#1\textwidth}
+  \mbox{}\begin{minipage}[t]{{#1}\textwidth}
+    \raggedright #2
+  \end{minipage}
+  \qquad % column separation
+  \begin{minipage}[t]{\mycoltwosize}
+    \vspace*{0pt}
+    \raggedright #3
+  \end{minipage}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \qitem* : Multiple choice and True/False question item formats.
+%           These are pretty-printed formats that can be varied 
+%           as needed and so far come in two types:
+% 
+% Type A: Multiple choice formats, \qitemMC{two,three,four,five}
+% Type B: True/False format, \qitemTF
+%
+% A. \qitemMC* -- MC question type vary depending on the number of 
+%   responses (n=2,3,4,5) and each takes the following arguments: 
+%   1: question statement
+%   2,3,...,1+n: n choices of answer, labelled A,B,C,...
+%   2+n: correct answer, given by an integer in [1,n], 1=A, 2=B, etc.
+%   3+n: notes or details on solution
+%   4+n: question source
+%
+% NOTES: 
+% (1) A single slide is generated that contains the questions only.
+%     If the "correct answer" parameter is non-empty, then a second slide
+%     is generated which repeats the questions and includes the solution
+%     (A-E or T/F) in a different color.
+% (2) If the notes/details are also non-empty, then those are displayed 
+%     along with the solution on the second slide.
+% (3) The heading on clicker slides is modified slightly depending on
+%     whether or not the counter 'clickernum' is set to 0.
+% (4) Clicker slides do not contribute to the overall page count.
+
+% These are nice, but some students complained about visibility:
+%\definecolor{myclickhead}{rgb}{0.0,0.5,0.0}  % green
+%\definecolor{myclickq}{rgb}{0.0,0.5,0.0}     % green
+%\definecolor{myclickans}{rgb}{0.57,0.27,0.07}% brown
+% These are more visible:
+\definecolor{myclickhead}{rgb}{0.08,0.41,0.07}% green
+\definecolor{myclickq}{rgb}{0.08,0.41,0.07}   % green
+\definecolor{myclickans}{rgb}{0.48,0.10,0.10} % brown
+
+\newcommand{\clickhead}{%
+  \addtocounter{page}{-1}\thispagestyle{empty}%
+  \begin{center}
+    \textcolor{myclickhead}{{\setlength{\fboxsep}{10pt}%
+        \ifthenelse{\equal{\value{clickernum}}{0}}%
+        {\fbox{\bfseries\sffamily\LARGE Clicker Question}}%
+        {\fbox{\bfseries\sffamily\LARGE Clicker Question \#\arabic{clickernum}}}}}
+  \end{center}}
+
+\newcommand{\clickbody}[1]{\noindent\raggedright%
+  {\color{myclickq}\sffamily #1}}
+
+\newcommand{\clickans}[1]{{\raggedright\color{myclickans}\sffamily\slshape #1}}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\qitemMCtwo}[6]{%
+  \clearpage
+  \stepcounter{clickernum}
+  \clickhead
+
+  \clickbody{%
+    #1
+    \begin{ABClist}
+    \item #2
+    \item #3
+    \end{ABClist}}
+
+  \ifthenelse{\equal{#4}{}}{}%
+  {\clearpage
+    \clickhead
+    
+    \clickbody{%
+      #1
+      \begin{ABClist}
+      \item #2
+      \item #3
+      \end{ABClist}}
+    
+    \clickans{\hrulefill}
+    
+    {\if\relax\detokenize{#5}\relax
+      {\clickans{\bfseries Answer:~~(\AlphAlph{#4}).}}
+      \else
+      {\clickans{\bfseries Answer:~~(\AlphAlph{#4}).}}~~
+      \clickans{#5}
+      % \ifsource{#6}
+      \fi}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\qitemMCthree}[7]{%
+  \clearpage
+  \stepcounter{clickernum}
+  \clickhead
+
+  \clickbody{%
+    #1
+    \begin{ABClist}
+    \item #2
+    \item #3
+    \item #4
+    \end{ABClist}}
+
+  \ifthenelse{\equal{#5}{}}{}%
+  {\clearpage
+    \clickhead
+    
+    \clickbody{%
+      #1
+      \begin{ABClist}
+      \item #2
+      \item #3
+      \item #4
+      \end{ABClist}}
+    
+    \clickans{\hrulefill}
+    
+    {\if\relax\detokenize{#6}\relax
+      {\clickans{\bfseries Answer:~~(\AlphAlph{#5}).}}
+      \else
+      {\clickans{\bfseries Answer:~~(\AlphAlph{#5}).}}~~
+      \clickans{#6}
+      % \ifsource{#7}
+      \fi}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\qitemMCfour}[8]{%
+  \clearpage
+  \stepcounter{clickernum}
+  \clickhead
+  
+  \clickbody{%
+    #1
+    \begin{ABClist}
+    \item #2
+    \item #3
+    \item #4
+    \item #5
+    \end{ABClist}}
+
+  \ifthenelse{\equal{#6}{}}{}%
+  {\clearpage
+    \clickhead
+    
+    \clickbody{%
+      #1
+      \begin{ABClist}
+      \item #2
+      \item #3
+      \item #4
+      \item #5
+      \end{ABClist}}
+    
+    \clickans{\hrulefill}
+    
+    {\if\relax\detokenize{#7}\relax
+      {\clickans{\bfseries Answer:~~(\AlphAlph{#6}).}}
+      \else
+      {\clickans{\bfseries Answer:~~(\AlphAlph{#6}).}}~~
+      \clickans{#7}
+      % \ifsource{#8}
+      \fi}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\qitemMCfourtwoc}[8]{%
+  \clearpage
+  \stepcounter{clickernum}
+  \clickhead
+  
+  \clickbody{%
+    #1
+
+    \begin{minipage}[t]{0.47\textwidth}
+      \begin{ABClist}
+      \item #2
+      \item #3
+      \end{ABClist}
+    \end{minipage}
+    \begin{minipage}[t]{0.47\textwidth}
+      \begin{ABClist}
+        \setcounter{ABCcounter}{2}
+      \item #4
+      \item #5
+      \end{ABClist}
+    \end{minipage}}
+
+  \ifthenelse{\equal{#6}{}}{}%
+  {\clearpage
+    \clickhead
+    
+    \clickbody{%
+      #1
+
+      \begin{minipage}[t]{0.47\textwidth}
+        \begin{ABClist}
+        \item #2
+        \item #3
+        \end{ABClist}
+      \end{minipage}
+      \begin{minipage}[t]{0.47\textwidth}
+        \begin{ABClist}
+          \setcounter{ABCcounter}{2}
+        \item #4
+        \item #5
+        \end{ABClist}
+      \end{minipage}}
+    
+    \clickans{\hrulefill}
+    
+    {\if\relax\detokenize{#7}\relax
+      {\clickans{\bfseries Answer:~~(\AlphAlph{#6}).}}
+      \else
+      {\clickans{\bfseries Answer:~~(\AlphAlph{#6}).}}~~
+      \clickans{#7}
+      % \ifsource{#8}
+      \fi}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\qitemMCfive}[9]{%
+  \clearpage
+  \stepcounter{clickernum}
+  \clickhead
+  
+  \clickbody{%
+    #1
+    \begin{ABClist}
+    \item #2
+    \item #3
+    \item #4
+    \item #5
+    \item #6
+    \end{ABClist}}
+  
+  \ifthenelse{\equal{#7}{}}{}%
+  {\clearpage
+    \clickhead
+    
+    \clickbody{%
+      #1
+      \begin{ABClist}
+      \item #2
+      \item #3
+      \item #4
+      \item #5
+      \item #6
+      \end{ABClist}}
+    
+    \clickans{\hrulefill}
+    
+    {\if\relax\detokenize{#8}\relax
+      {\clickans{\bfseries Answer:~~(\AlphAlph{#7}).}}
+      \else
+      {\clickans{\bfseries Answer:~~(\AlphAlph{#7}).}}~~
+      \clickans{#8}
+      % \ifsource{#9}
+      \fi}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% B. \qitemTF -- T/F question type takes 
+% the following arguments: 
+%   1: question statement
+%   2: correct answer (either TRUE or FALSE)
+%   3: notes on the solution
+%   4: question source
+\newcommand{\qitemTF}[4]{%
+  \clearpage
+  \stepcounter{clickernum}
+  \clickhead
+
+  \clickbody{\emph{True (A) or False (B):}~~#1}
+
+  \ifthenelse{\equal{#2}{}}{}%
+  {\clearpage
+    \clickhead
+    
+    \clickbody{\emph{True (A) or False (B):}~~#1}
+    
+    \clickans{\hrulefill}
+    
+    {\if\relax\detokenize{#3}\relax
+      {\clickans{\bfseries Answer:~~{#2}.}}
+      \else
+      {\clickans{\bfseries Answer:~~{#2}.}}~~
+      \clickans{#3}
+      % \ifsource{#4}
+      \fi}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lhead{\myemph{Numerical Analysis Clicker Questions}}
+\chead{\myemph{\courseID}}
+\rhead{\myemph{\thepage/\pageref{lastpage}}}
+%\lfoot{\myemph{\tiny \today}}
+%\rfoot{\myemph{\tiny \copyrtfoot}}
+\lfoot{}\cfoot{}\rfoot{}
+
+\pagestyle{fancy}
+\normalem
+
+\begin{document}
+\slideenv
+
+\setcounter{clickernum}{24}% last # from previous notes
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\heading{\vspace*{0pt}Sample Lecture Slides}
+
+Authors: M. Alamgir Hossain and John M. Stockie\\
+\phantom{Authors:} Department of Mathematics, Simon Fraser University
+
+\begin{itemize}
+\item Example of clicker question types:
+  \begin{itemize}
+  \item \verb+\qitemMCthree+
+  \item \verb+\qitemMCfour+
+  \item \verb+\qitemMCfive+
+  \item \verb+\qitemTF+
+  \end{itemize}
+\item Note that the clicker slides are not included in the slide
+  numbering. 
+\end{itemize}
+
+\hrulefill
+
+\CClicense
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Multiple-choice questions with four responses.
+\qitemMCfour{You have a system of three linear equations with three
+  unknowns. If you perform Gaussian elimination and obtain the
+  reduced row echelon form
+  \begin{gather*}
+    \left[ \begin{array}{rrr:r}
+        1 & -2 & 4 &  6 \\
+        0 &  1 & 0 & -3 \\
+        0 &  0 & 0 &  0  
+      \end{array} \right]      
+  \end{gather*}
+  then the system has \dots}%
+{no solution}%
+{a unique solution}%
+{more than one solution}%
+{infinitely many solutions}%
+{4}{The last equation reads ``\,$0=0$'' so $x_3$ can be any real
+  number. Strictly (C) is also correct, but (D) is the most accurate
+  answer.}{\mah}   
+
+\qitemMCfour{\fillblank If $f(x)$ is a real-valued function of a real
+  variable, then the \mybigblank\ error in the difference
+  approximation for the derivative $\ds{f'(x) \approx \frac{f(x+h) -
+      f(x)}{h}}$ goes to zero as $h \to 0$.}%
+{absolute}%
+{relative}%
+{cancellation}%
+{truncation}%
+{4}{Strictly, response (A) is also correct since truncation error is an
+  (absolute) difference from the exact derivative.}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Two-column example.
+\qitemMCfour{%
+  \mytwocol[0.55]{The intersection points between the curves $y = x$ and $y
+    = g(x)$ are $x = 0$ and $x = 4$, as shown in the plot.  Which of
+    the statements below regarding the fixed point iteration $x_{k+1}
+    = g(x_k)$ is TRUE?
+    \begin{IVlist}
+    \item If $x_0 = 2$ then $x_k$ converges to 4.
+    \item If $x_0 = 1$ then $x_k$ converges to 0.
+    \item If $x_0 = 6$ then $x_k$ converges to 4.
+    \end{IVlist}}%
+  {\includegraphics[width=\textwidth]{figures/fixiter}}}%
+{I and II}%
+{II and III}%
+{I and III}%
+{I, II and III}%
+{3}{}{\mah}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Multiple-choice questions with three responses.
+\qitemMCthree{Consider the matrix
+  \begin{gather*}
+    A = \begin{bmatrix}
+      4 &  -8 &  1 \\
+      6 &   5 &  7 \\
+      0 & -10 & -3
+    \end{bmatrix} 
+  \end{gather*}
+  whose $LU$ factorization we want to compute using Gaussian
+  elimination.  What will the initial pivot element be without
+  pivoting, and with partial pivoting?}%
+{0 (no pivoting), \quad 6 (partial pivoting)}%
+{4 (no pivoting), \quad 0 (partial pivoting)}%
+{4 (no pivoting), \quad 6 (partial pivoting)}%
+{3}{}{Heath~\cite{heath-1997}, Review Question
+  2.36, p.~70}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Multiple-choice questions with five responses.
+\qitemMCfive{Which of the following statements is TRUE?
+  \begin{IVlist}
+  \item Simpson's rule is exact for linear functions, $f(x) = ax + b$.
+  \item Simpson's rule is exact for second-degree polynomials
+    (quadratics), $f(x) = ax^2 + bx + c$.
+  \item Simpson's rule is exact for fourth-degree polynomials.
+  \end{IVlist}}%
+{none is true}%
+{I}%
+{II}%
+{I and II}%
+{I, II and III}%
+{4}{}{\jms, \courseID lecture notes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% True-false questions.
+\qitemTF{Let $f(x) = x^2 - 2x +1$. The bisection method can be used to
+  approximate the root of the function $f(x)$ pictured.
+  \begin{center}
+    \includegraphics[width=0.45\textwidth]{figures/bisec}
+  \end{center}
+  \mbox{}}{FALSE}{}{\mah}
+
+\qitemTF{This piecewise polynomial is a quadratic spline:
+  \begin{gather*}
+    S(x) = \begin{cases}
+      0,   & \text{if } -1\leqslant x \leqslant 0 \\
+      x^2, & \text{if } 0 \leqslant x \leqslant 1
+    \end{cases} 
+  \end{gather*}}%
+{TRUE}{The piecewise functions are both quadratic, and $S(x)$ and
+  $S'(x)$ match at $x=0$.}{\mah}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\label{lastpage}
+\end{document}

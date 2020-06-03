@@ -1,0 +1,65 @@
+% clickerdefs.tex: LaTeX definitions that are common to all 
+% formats used to display clicker questions (question bank, 
+% beamer, etc.)
+
+\newcommand{\courseID}{MACM~316\xspace} % at SFU
+\newcommand{\coursename}{Numerical Analysis~I\xspace}
+\newcommand{\clickerVersion}{1.0}
+\newcommand{\clickerDate}{May 14, 2020}
+
+\newcommand{\CClicense}{%
+  \begin{center}
+    \includegraphics[height=1cm]{cc-by-nc-sa.png}
+  \end{center}
+  This teaching resource (including \LaTeX\ source, graphical images and
+  \Matlab code) is made available under the Creative Commons
+  \mbox{``CC~BY-NC-SA''} license.  This license allows anyone to reuse,
+  revise, remix and redistribute the databank of clicker questions
+  provided that it is not for commercial purposes and that appropriate
+  credit is given to the original authors.  For more information, visit
+  \url{http://creativecommons.org/licenses/by-nc-sa/4.0}.}
+
+\newcommand{\mysmblank}{\underline{\phantom{aaa}}\xspace}
+\newcommand{\myblank}{\underline{\phantom{aaaaaa}}\xspace}
+\newcommand{\mybigblank}{\underline{\phantom{aaaaaaaaaaaa}}\xspace}
+\newcommand{\fillblank}{\emph{Fill in the blank:}~}
+\newcommand{\fillblanks}{\emph{Fill in the blanks:}~}
+\newcommand{\myuline}[1]{\underline{\smash{#1}}}
+\newcommand{\theblank}{{\tt [blank]}}
+%\newcommand{\circnum}[1]{\raisebox{0.5pt}{\mbox{\textcircled{\raisebox{-0.9pt}{\mbox{\sffamily #1}}}}}}
+%\newcommand{\circnum}[1]{\textcircled{{#1}}} % simpler version (fails)
+\newcommand*\circnum[1]{\tikz[baseline=(char.base)]{
+        \node[shape=circle,draw,minimum size=4mm, inner sep=0pt] (char)
+        {\rule[-3pt]{0pt}{\dimexpr2ex+2pt}#1};}}
+\newcommand{\epsM}{\varepsilon_{_{\!M}}} % machine epsilon
+\newcommand{\fl}{f\!\ell}                % floating point
+\newcommand{\Matlab}{Matlab\xspace}
+\newcommand{\ds}[1]{{\displaystyle #1}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\cond}{\operatorname{cond}}
+\newcommand{\jms}{JMS}% John M. Stockie
+\newcommand{\mah}{MAH}% M. Alamgir Hossain
+
+\newcommand{\fixthis}[1]{\textcolor{red}{\fbox{~FIX: #1~}}}
+\newcommand{\leavethisout}[1]{}
+
+\newcounter{ABCcounter}  % List with (A), (B), (C), ...
+\newenvironment{ABClist}{%
+  \begin{list}{(\Alph{ABCcounter})}{\usecounter{ABCcounter}}}{%
+  \end{list}}
+
+\newcounter{IVcounter}  % List with I, II, III, ...
+\newenvironment{IVlist}{%
+  \begin{list}{\Roman{IVcounter}.}{\usecounter{IVcounter}}}{%
+  \end{list}}
+
+% For the question "source", display nothing if 
+% the argument is empty.
+\newcommand{\ifsource}[1]{%
+  \if\relax\detokenize{#1}\relax
+     % SHOW NOTHING
+  \else
+     \mbox{}\\[0.2cm]
+     \mbox{}\hfill{\sffamily\footnotesize \{\,Source: #1\,\}}%
+  \fi}
+
