@@ -19,16 +19,11 @@ If you have any comments, corrections, personal experiences, or additions to the
 
 ***
 
-<img src="cc-by-nc-sa.png"
-     alt="Markdown Monster icon"
-     class="center"
-     width="24" height="12" />
-
 <div align="center">
 <img src="cc-by-nc-sa.png"
      alt="Markdown Monster icon"
      class="center"
-     width="24" height="39"
+     width="100" height="60"
      style="float: center; margin-right: 10px;" />
 </div>
 
