@@ -7,7 +7,8 @@ M.A. Hossain, P.M. Menz and J.M. Stockie, "An open-access clicker question bank 
 
 The complete clicker question bank, including all LaTeX source, images and supporting files can be downloaded from one of two archive files below:
 
-clickerQbank.zip    or    clickerQbank.tar.gz
+[clickerQbank.zip](clickerQbank.zip)    or    [clickerQbank.tar.gz](clickerQbank.tar.gz)
+
 For a quick look at the main components of the question bank, you can view the individual files below:
 
 - [clickerQbank.pdf](clickerQbank.pdf) and [clickerQbank.tex](clickerQbank.tex): the complete LaTeX question bank and the typeset document in PDF format.
