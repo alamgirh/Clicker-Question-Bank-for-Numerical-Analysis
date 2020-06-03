@@ -14,7 +14,7 @@ For a quick look at the main components of the question bank, you can view the i
 - [clickerbeamer.pdf](clickerbeamer.pdf) and [clickerbeamer.tex](clickerbeamer.tex): sample lecture slides formatted using the LaTeX-beamer package.
 - [clickerslides.pdf](clickerslides.pdf) and [clickerslides.tex](clickerslides.tex): a simpler non-beamer slide format.
 
-This project was funded by an [SFU OER grant](https://www.sfu.ca/oergrants.html) and an NSERC Discovery Grant. The question bank is provided under a Creative Commons Share-Alike license as described below. This can be considered as "Version 1" of the question bank and we will post updated versions here as more questions are added. Please feel free to use and modify this resource for your own teaching purposes.
+This project was funded by an [SFU OER grant](https://www.sfu.ca/oergrants.html) and an [NSERC Discovery Grant](https://www.nserc-crsng.gc.ca/professors-professeurs/grants-subs/dgigp-psigp_eng.asp). The question bank is provided under a Creative Commons Share-Alike license as described below. This can be considered as "Version 1" of the question bank and we will post updated versions here as more questions are added. Please feel free to use and modify this resource for your own teaching purposes.
 If you have any comments, corrections, personal experiences, or additions to the question bank, then PLEASE write to us about it!!
 
 ***
@@ -23,7 +23,7 @@ If you have any comments, corrections, personal experiences, or additions to the
 <img src="cc-by-nc-sa.png"
      alt="Markdown Monster icon"
      class="center"
-     width="150" height="100"
+     width="170" height="100"
      style="float: center; margin-right: 10px;" />
 </div>
 
