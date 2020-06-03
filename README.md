@@ -18,7 +18,7 @@ This project was funded by an SFU OER grant and an NSERC Discovery Grant. The qu
 If you have any comments, corrections, personal experiences, or additions to the question bank, then PLEASE write to us about it!!
 
 ***
-![http://people.math.sfu.ca/~stockie/NAclicker/cc-by-nc-sa.png](cc-by-nc-sa.png)
+![](cc-by-nc-sa.png)
 
 This teaching resource (including LaTeX source, graphical images and Matlab code) is made available under the Creative Commons "CC BY-NC-SA" license. This license allows anyone to reuse, revise, remix and redistribute the databank of clicker questions provided that it is not for commercial purposes and that appropriate credit is given to the original authors. For more information, visit http://creativecommons.org/licenses/by-nc-sa/4.0
 
