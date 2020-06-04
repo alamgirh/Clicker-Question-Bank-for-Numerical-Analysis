@@ -26,7 +26,7 @@ alamgirmath@gmail.com">write to us about it!!</a>
 <img src="cc-by-nc-sa.png"
      alt="Markdown Monster icon"
      class="center"
-     width="170" height="100"
+     width="170" height="80"
      style="float: center; margin-right: 10px;" />
 </div>
 
