@@ -17,7 +17,7 @@ For a quick look at the main components of the question bank, you can view the i
 
 This project was funded by an [SFU OER grant](https://www.sfu.ca/oergrants.html) and an [NSERC Discovery Grant](https://www.nserc-crsng.gc.ca/professors-professeurs/grants-subs/dgigp-psigp_eng.asp). The question bank is provided under a Creative Commons Share-Alike license as described below. This can be considered as "Version 1" of the question bank and we will post updated versions here as more questions are added. Please feel free to use and modify this resource for your own teaching purposes.
 
-<span style="color:red">If you have any comments, corrections, personal experiences, or additions to the question bank, then PLEASE</span>  
+<span style="color:red">*If you have any comments, corrections, personal experiences, or additions to the question bank, then PLEASE*</span>  
 <a href = "mailto: jstockie@sfu.ca,
 alamgirmath@gmail.com">write to us about it!!</a>
 
