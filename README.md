@@ -2,7 +2,7 @@
 This [open educational resource (OER)](https://en.wikipedia.org/wiki/Open_educational_resources) is a bank of over 250 multiple-choice and true-false questions that explores the material taught in a typical introductory undergraduate [course in numerical analysis](http://www.sfu.ca/~jstockie/teaching/macm316/outline.html). The questions are typeset in LaTeX and are intended for classroom use with clickers (also known as student response systems) where students use a hand-held clicker remote or smartphone to submit their responses to questions. The project is described in the following paper which also serves as a "how-to guide":
 
 ***
-Hossain, M. Alamgir, Petra M. Menz, and John M. Stockie. "An open-access clicker question bank for numerical analysis." PRIMUS (2021): 1-23.[[DOI]](https://doi.org/10.1080/10511970.2021.1954113) [[ arXiv ]](https://arxiv.org/abs/2005.12837)
+Hossain, M. Alamgir, Petra M. Menz, and John M. Stockie. "An open-access clicker question bank for numerical analysis." PRIMUS (2021): 1-23. [[DOI]](https://doi.org/10.1080/10511970.2021.1954113) [[ arXiv ]](https://arxiv.org/abs/2005.12837)
 ***
 
 The complete clicker question bank, including all LaTeX source, images and supporting files can be downloaded from one of two archive files below:
